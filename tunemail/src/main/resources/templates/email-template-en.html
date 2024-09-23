@@ -1,0 +1,22 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Email Campaign</title>
+</head>
+<body>
+<h2>{{ subject }}</h2>
+<p>Dear Music Lover,</p>
+<p>{{ content }}</p>
+<p>Best regards,</p>
+<p>TuneMail Team</p>
+
+<!-- Tracking Pixel (Open Rate) -->
+<img src="http://localhost:8080/api/track/open/{{ campaignId }}" width="1" height="1" />
+
+<!-- Example Click Tracking -->
+<a href="http://localhost:8080/api/track/click/{{ campaignId }}?redirect=https://musician-website.com">Check out our latest track</a>
+</body>
+</html>
+

@@ -1,10 +1,46 @@
 <!DOCTYPE html>
-<html lang="en">
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TuneMailer Analytics Dashboard</title>
+    <style>
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        table, th, td {
+            border: 1px solid black;
+        }
+
+        th, td {
+            padding: 10px;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
-
+<h2>Email Campaign Analytics</h2>
+<table>
+    <thead>
+    <tr>
+        <th>Campaign</th>
+        <th>Recipients</th>
+        <th>Open Rate</th>
+        <th>Click Rate</th>
+        <th>Status</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="campaign : ${campaigns}">
+        <td th:text="${campaign.subject}">Campaign Subject</td>
+        <td th:text="${campaign.recipientList}">Recipients</td>
+        <td th:text="${campaign.openCount} + '/' + ${campaign.recipientList.split(',').length} + ' (' + (campaign.openCount * 100 / campaign.recipientList.split(',').length) + '%)'">Open Rate</td>
+        <td th:text="${campaign.clickCount} + '/' + ${campaign.recipientList.split(',').length} + ' (' + (campaign.clickCount * 100 / campaign.recipientList.split(',').length) + '%)'">Click Rate</td>
+        <td th:text="${campaign.sent ? 'Sent' : 'Pending'}">Status</td>
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>
