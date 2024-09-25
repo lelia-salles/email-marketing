@@ -1,6 +1,5 @@
 package email.tunemail.service;
 
-
 import com.rabbitmq.client.AMQP;
 import email.tunemail.model.Campaign;
 import jakarta.mail.Message;
@@ -36,5 +35,9 @@ public void handleFailedEmail(Campaign campaign) {
     // Handle messages that landed in the Dead-Letter Queue (e.g., log failure, notify user)
     System.out.println("Email permanently failed for campaign: " + campaign.getId());
 }
+
+public void main() {
+}
+
 
 

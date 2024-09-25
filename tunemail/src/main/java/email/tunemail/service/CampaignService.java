@@ -49,6 +49,7 @@ public class CampaignService {
     public Campaign createCampaign(CampaignDto campaignDto) {
         Campaign campaign = new Campaign();
         campaign.setSubjectA(campaignDto.getSubject() + " [Version A]");
+        String[] emailContent = new String[0];
         campaign.setContentA(emailContent[0]);
         campaign.setSubjectB(campaignDto.getSubject() + " [Version B]");
         campaign.setContentB(emailContent[1]);
@@ -59,7 +60,7 @@ public class CampaignService {
     }
 
     public void scheduleSegmentedCampaign(Long campaignId, String segmentedData) {
-        Campaign campaign = campaignRepository.findById(campaignId)
+        Campaign campaign = (Campaign) campaignRepository.findById(campaignId)
                 .orElseThrow(() -> new ResourceNotFoundException("Campaign not found"));
 
         // Use segmented audience data to divide recipients

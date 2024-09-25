@@ -17,7 +17,7 @@ public class AIAudienceSegmentationService {
     private CampaignRepository campaignRepository;
 
     public String[] segmentAudience(Long campaignId) {
-        Campaign campaign = campaignRepository.findById(campaignId)
+        Campaign campaign = (Campaign) campaignRepository.findById(campaignId)
                 .orElseThrow(() -> new ResourceNotFoundException("Campaign not found"));
 
         // Get engagement data (e.g., open and click rates)
@@ -27,6 +27,6 @@ public class AIAudienceSegmentationService {
         // Ask AI to segment audience based on engagement levels
         String prompt = "Segment the audience into high-engagement and low-engagement groups based on the following data: "
                 + engagementData;
-        return aiEmailService.generateEmailContent(prompt);
+        return AIemailService.generateEmailContent(prompt);
     }
 }

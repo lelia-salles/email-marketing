@@ -183,6 +183,14 @@ public class Campaign {
 
     }
 
+    public String getSubject() {
+        return null;
+    }
+
+    public String getContent() {
+        return null;
+    }
+
     public static class Builder {
         private String name;
         private String subject;
